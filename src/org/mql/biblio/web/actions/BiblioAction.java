@@ -23,8 +23,8 @@ public class BiblioAction {
 	public String index(Context context) {
 		List<Author> authors = service.authors();
 		System.out.println("taille : " + authors.size());
-		context.setModel("allAuthors", authors);
-		context.setModel("allPublishers", service.publishers());
+		context.setModel("authors", authors);
+		context.setModel("publishers", service.publishers());
 		return "home";
 	}
 
@@ -42,7 +42,7 @@ public class BiblioAction {
 		return "documents";
 	}
 
-	public String findAuthor(Context context, String tableName) {
+	public String findAuthors(Context context) {
 		String keyWord = context.getParameter("keyWord");
 		List<Author> authors = service.authors(keyWord);
 		context.setModel("authors", authors);
@@ -82,9 +82,7 @@ public class BiblioAction {
 	public String authorsByPublisher(Context context) {
 		int id = Integer.parseInt(context.getParameter("publisherID"));
 		Publisher publisher = service.getPublisher(id);
-
 		List<Document> documents = service.getDocumentsByAuthor(id);
-
 		List<Author> authors = new Vector<>();
 		for (Document document : documents)
 			authors.addAll(document.getAuthors());

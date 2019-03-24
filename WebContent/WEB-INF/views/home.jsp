@@ -20,7 +20,7 @@
 		<li><a href="biblio/documents">Liste des documents</a></li>
 	</ul>
 	<hr />
-	<form method="POST" action="biblio/findAuthor">
+	<form method="POST" action="biblio/findAuthors">
 		Auteur par nom : <input type="text" name="keyWord" /> <input type="submit"
 			name="OK" value="OK" />
 	</form>
@@ -36,8 +36,8 @@
 	document par autheur : 
 		<select name="authorID">
 			<%
-				List<Author> allAuthors = (List<Author>) request.getAttribute("allAuthors");
-				for (Author author : allAuthors) {
+				List<Author> authors = (List<Author>) request.getAttribute("authors");
+				for (Author author : authors) {
 			%>
 			<option value="<%=author.getId()%>"><%=author.getName()%></option>
 			<%
@@ -55,8 +55,8 @@
 	documents par editeur : 
 		<select name="publisherID">
 			<%
-				List<Publisher> allPublishers = (List<Publisher>) request.getAttribute("allPublishers");
-				for (Publisher publisher : allPublishers) {
+				List<Publisher> publishers = (List<Publisher>) request.getAttribute("publishers");
+				for (Publisher publisher : publishers) {
 			%>
 			<option value="<%=publisher.getId()%>"><%=publisher.getName()%></option>
 			<%
@@ -74,7 +74,7 @@
 	auteurs d'un editeur : 
 		<select name="publisherID">
 			<%
-				for (Publisher publisher : allPublishers) {
+				for (Publisher publisher : publishers) {
 			%>
 			<option value="<%=publisher.getId()%>"><%=publisher.getName()%></option>
 			<%

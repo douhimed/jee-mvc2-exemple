@@ -73,7 +73,8 @@ public class BiblioBusiness implements IBiblioBusiness {
 
 	@Override
 	public List<Document> documents() {
-		return documentDAO.getAll();
+		List<Document> documents = documentDAO.getAll();
+		return documentInfos(documents, null);
 	}
 
 	@Override
@@ -89,17 +90,7 @@ public class BiblioBusiness implements IBiblioBusiness {
 	@Override
 	public List<Document> documents(String keyWord) {
 		List<Document> documents = documentDAO.getLike(keyWord);
-		for (Document document : documents) {
-			int id_p = document.getPublisher().getId();
-			document.setPublisher(publisherDAO.getById(id_p));
-			List<Relation> ralations = relationDAO.getByDocument(document.getIsbn()); 
-			for (Relation relation : ralations) {
-				Author author = authorDAO.getById(relation.getId_author());
-				document.addAuthor(author);
-			}
-		}
-
-		return documents;
+		return documentInfos(documents, null);
 	}
 
 	@Override
@@ -125,7 +116,16 @@ public class BiblioBusiness implements IBiblioBusiness {
 	@Override
 	public List<Document> getDocumentsByPublisher(Publisher publisher) {
 		List<Document> documents = documentDAO.getByPublisher(publisher.getId());
+		return documentInfos(documents, publisher);
+	}
+
+	private List<Document> documentInfos(List<Document> documents, Publisher publisher) {
+		
 		for (Document document : documents) {
+			if(publisher == null) {
+				int id_p = document.getPublisher().getId();
+				publisher = publisherDAO.getById(id_p);
+			}
 			document.setPublisher(publisher);
 			List<Relation> ralations = relationDAO.getByDocument(document.getIsbn()); 
 			for (Relation relation : ralations) {
@@ -133,7 +133,7 @@ public class BiblioBusiness implements IBiblioBusiness {
 				document.addAuthor(author);
 			}
 		}
+
 		return documents;
 	}
-
 }
