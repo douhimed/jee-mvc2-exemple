@@ -1,12 +1,11 @@
 package org.mql.biblio.dao;
 
 import java.util.List;
+import java.util.List;
 import java.util.Vector;
 
 import org.mql.biblio.dao.jdbc.Database;
 import org.mql.biblio.dao.mappers.BiblioMapper;
-import org.mql.biblio.models.Author;
-import org.mql.biblio.models.Document;
 import org.mql.biblio.models.Publisher;
 
 public class PublisherDAO implements IPublisherDAO {
@@ -29,7 +28,7 @@ public class PublisherDAO implements IPublisherDAO {
 		return db;
 	}
 
-	public void setDb(Database db) {
+	public void ListDb(Database db) {
 		this.db = db;
 	}
 	
@@ -44,7 +43,7 @@ public class PublisherDAO implements IPublisherDAO {
 	public Publisher getById(Object id) {
 		String[][] data = db.selectEqual(tableName, "publisher_ID", id.toString());
 		List<Publisher> publishers = mapPublisher(data);
-		return publishers.get(0);
+		return publishers.stream().findFirst().get();
 	}
 
 	private List<Publisher> mapPublisher(String[][] data) {
@@ -52,7 +51,7 @@ public class PublisherDAO implements IPublisherDAO {
 		for (int i = 1; i < data.length; i++) {
 			publishers.add(BiblioMapper.getPublisher(data[i]));			
 		}
-		publishers.sort((Publisher o1, Publisher o2) -> o1.getName().compareTo(o2.getName()));
+		//publishers.sort((Publisher o1, Publisher o2) -> o1.getName().compareTo(o2.getName()));
 		return publishers;
 	}
 

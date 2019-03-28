@@ -36,7 +36,7 @@
 	document par autheur : 
 		<select name="authorID">
 			<%
-				List<Author> authors = (List<Author>) request.getAttribute("authors");
+			List<Author> authors = (List<Author>) request.getAttribute("authors");
 				for (Author author : authors) {
 			%>
 			<option value="<%=author.getId()%>"><%=author.getName()%></option>
@@ -55,7 +55,7 @@
 	documents par editeur : 
 		<select name="publisherID">
 			<%
-				List<Publisher> publishers = (List<Publisher>) request.getAttribute("publishers");
+			List<Publisher> publishers = (List<Publisher>) request.getAttribute("publishers");
 				for (Publisher publisher : publishers) {
 			%>
 			<option value="<%=publisher.getId()%>"><%=publisher.getName()%></option>

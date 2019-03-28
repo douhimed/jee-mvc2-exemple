@@ -1,6 +1,7 @@
 package org.mql.biblio.dao;
 
 import java.util.List;
+import java.util.List;
 import java.util.Vector;
 
 import org.mql.biblio.dao.jdbc.Database;
@@ -20,7 +21,7 @@ public class AuthorDAO implements IAuthorDAO {
 		this.db = db;
 	}
 
-	public void setDataBase(Database db) {
+	public void ListDataBase(Database db) {
 		this.db = db;
 	}
 
@@ -28,7 +29,7 @@ public class AuthorDAO implements IAuthorDAO {
 		return db;
 	}
 
-	public void setTableName(String tableName) {
+	public void ListTableName(String tableName) {
 		this.tableName = tableName;
 	}
 
@@ -50,7 +51,7 @@ public class AuthorDAO implements IAuthorDAO {
 	public Author getById(Object id) {
 		String[][] data = db.selectEqual(tableName, "Au_id", id.toString());
 		List<Author> authors = mapData(data);
-		return authors.get(0);
+		return authors.stream().findFirst().get();
 	}
 
 	private List<Author> mapData(String[][] data) {
@@ -58,7 +59,7 @@ public class AuthorDAO implements IAuthorDAO {
 		for (int i = 1; i < data.length; i++) {
 			authors.add(BiblioMapper.getAuthor(data[i]));			
 		}
-		authors.sort((Author o1, Author o2) -> o1.getName().compareTo(o2.getName()));
+		//authors.sort((Author o1, Author o2) -> o1.getName().compareTo(o2.getName()));
 		return authors;
 	}
 

@@ -1,11 +1,11 @@
 package org.mql.biblio.dao;
 
 import java.util.List;
+import java.util.List;
 import java.util.Vector;
 
 import org.mql.biblio.dao.jdbc.Database;
 import org.mql.biblio.dao.mappers.BiblioMapper;
-import org.mql.biblio.models.Author;
 import org.mql.biblio.models.Document;
 
 public class DocumentDAO implements IDocumentDAO {
@@ -21,7 +21,7 @@ public class DocumentDAO implements IDocumentDAO {
 		return db;
 	}
 
-	public void setDb(Database db) {
+	public void ListDb(Database db) {
 		this.db = db;
 	}
 
@@ -29,7 +29,7 @@ public class DocumentDAO implements IDocumentDAO {
 		return tableName;
 	}
 
-	public void setTableName(String tableName) {
+	public void ListTableName(String tableName) {
 		this.tableName = tableName;
 	}
 
@@ -71,7 +71,7 @@ public class DocumentDAO implements IDocumentDAO {
 	public Document getById(Object id) {
 		String[][] data = db.selectEqual(tableName, "ISBN", id.toString());
 		List<Document> documents = mapData(data);
-		return documents.get(0);
+		return documents.stream().findFirst().get();
 	}
 
 }

@@ -17,7 +17,7 @@
 	<table border="1" style="width: 100%; border-collapse: collapse;">
 	
 		<%
-			List<Publisher> publishers = (List<Publisher>) request.getAttribute("publishers");
+		List<Publisher> publishers = (List<Publisher>) request.getAttribute("publishers");
 			for (Publisher publisher : publishers) {
 		%>
 		<tr>

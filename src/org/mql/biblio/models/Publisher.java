@@ -1,6 +1,7 @@
 package org.mql.biblio.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public final class Publisher implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -53,6 +54,28 @@ public final class Publisher implements Serializable{
 	@Override
 	public String toString() {
 		return "Publisher [id=" + id + ", name=" + name + ", company=" + company + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, company);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		
+		if(!(obj instanceof Publisher))
+			return false;
+		
+		if(obj != this )
+			return false;
+		
+		Publisher publisher = (Publisher)obj;
+		return Integer.compare(this.id, publisher.getId()) == 0
+				&& this.name.equals(publisher.getName())
+				&& this.company.equals(publisher.getCompany());
 	}
 
 }

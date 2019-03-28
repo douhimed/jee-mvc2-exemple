@@ -1,6 +1,8 @@
 package org.mql.biblio.web.actions;
 
 import java.util.List;
+import java.util.List;
+import java.util.Vector;
 import java.util.Vector;
 
 import org.mql.biblio.business.IBiblioBusiness;
@@ -83,7 +85,7 @@ public class BiblioAction {
 		int id = Integer.parseInt(context.getParameter("publisherID"));
 		Publisher publisher = service.getPublisher(id);
 		List<Document> documents = service.getDocumentsByAuthor(id);
-		List<Author> authors = new Vector<>();
+		List<Author> authors = new Vector<Author>();
 		for (Document document : documents)
 			authors.addAll(document.getAuthors());
 		context.setModel("authors", authors);
@@ -96,7 +98,8 @@ public class BiblioAction {
 		List<Document> documents = service.documents(keyWord);
 		List<Publisher> publishers = new Vector<Publisher>();
 		for (Document document : documents) {
-			publishers.add(document.getPublisher());
+			if (!publishers.contains(document.getPublisher()))
+				publishers.add(document.getPublisher());
 		}
 		context.setModel("publishers", publishers);
 		context.setModel("title", "Liste des editeurs ayant ecrit un document sur la thematique : " + keyWord);

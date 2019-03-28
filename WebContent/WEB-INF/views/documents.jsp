@@ -19,7 +19,7 @@
 	<hr />
 
 	<%
-		List<Document> documents = (List<Document>) request.getAttribute("documents");
+	List<Document> documents = (List<Document>) request.getAttribute("documents");
 		for (Document document : documents) {
 	%>
 	ISBN :<%=document.getIsbn()%><br /> Titre :
@@ -35,7 +35,7 @@
 		</tr>
 
 		<%
-			List<Author> authors = document.getAuthors();
+		List<Author> authors = document.getAuthors();
 				for (Author author : authors) {
 		%>
 		<tr>

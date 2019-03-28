@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
-public final class Document implements Serializable{
+public final class Document implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String isbn;
 	private String title;
 	private int yearPublished;
@@ -18,7 +18,7 @@ public final class Document implements Serializable{
 	{
 		authors = new Vector<>();
 	}
-	
+
 	public Document() {
 	}
 
@@ -74,34 +74,34 @@ public final class Document implements Serializable{
 		this.publisher = publisher;
 	}
 
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
+	}
+
 	public List<Author> getAuthors() {
 		return Collections.unmodifiableList(authors);
 	}
 
-	public void setAuthors(List<Author> authors) {
+	public void ListAuthors(List<Author> authors) {
 		this.authors = authors;
 	}
 
 	public void addAuthor(Author author) {
 		authors.add(author);
 	}
-	
-	public Author removeAuthor(int index) {
-		return authors.remove(index); 
+
+	public boolean removeAuthor(Author author) {
+		return authors.remove(author);
 	}
-	
-	public void updateAUthor(int index, Author author) {
-		authors.set(index, author);
+
+	public void updateAUthor(Author author) {
+		authors.add(author);
 	}
-	
+
 	public int authorsNumber() {
 		return authors.size();
 	}
-	
-	public Author getAUthor(int index) {
-		return authors.get(index);
-	}
-	
+
 	@Override
 	public String toString() {
 		return "Document [isbn=" + isbn + ", title=" + title + ", yearPublished=" + yearPublished + ", publisher="

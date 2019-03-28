@@ -5,7 +5,6 @@ import java.util.Vector;
 
 import org.mql.biblio.dao.jdbc.Database;
 import org.mql.biblio.dao.mappers.BiblioMapper;
-import org.mql.biblio.models.Publisher;
 import org.mql.biblio.models.Relation;
 
 public class RelationDAO implements IRelationDAO {
@@ -28,7 +27,7 @@ public class RelationDAO implements IRelationDAO {
 	}
 
 
-	public void setDb(Database db) {
+	public void ListDb(Database db) {
 		this.db = db;
 	}
 
@@ -38,7 +37,7 @@ public class RelationDAO implements IRelationDAO {
 	}
 
 
-	public void setTableName(String tableName) {
+	public void ListTableName(String tableName) {
 		this.tableName = tableName;
 	}
 

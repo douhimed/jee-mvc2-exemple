@@ -1,9 +1,9 @@
 package org.mql.biblio.business;
 
 import java.util.List;
+import java.util.List;
 import java.util.Vector;
 
-import org.mql.biblio.dao.AuthorDAO;
 import org.mql.biblio.dao.IAuthorDAO;
 import org.mql.biblio.dao.IDocumentDAO;
 import org.mql.biblio.dao.IPublisherDAO;
@@ -41,7 +41,7 @@ public class BiblioBusiness implements IBiblioBusiness {
 		return authorDAO;
 	}
 
-	public void setAuthorDAO(IAuthorDAO authorDAO) {
+	public void ListAuthorDAO(IAuthorDAO authorDAO) {
 		this.authorDAO = authorDAO;
 	}
 
@@ -49,7 +49,7 @@ public class BiblioBusiness implements IBiblioBusiness {
 		return publisherDAO;
 	}
 
-	public void setPublisherDAO(IPublisherDAO publisherDAO) {
+	public void ListPublisherDAO(IPublisherDAO publisherDAO) {
 		this.publisherDAO = publisherDAO;
 	}
 
@@ -57,7 +57,7 @@ public class BiblioBusiness implements IBiblioBusiness {
 		return documentDAO;
 	}
 
-	public void setDocumentDAO(IDocumentDAO documentDAO) {
+	public void ListDocumentDAO(IDocumentDAO documentDAO) {
 		this.documentDAO = documentDAO;
 	}
 
